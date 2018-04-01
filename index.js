@@ -6,28 +6,31 @@ console.log('==========================')
 console.log('Please enter the operator: ');
 const operator = readline.prompt();
 
-console.log('Please enter the first number: ');
-const num1_as_string = readline.prompt();
-const num1 = +num1_as_string;
+console.log('How many numbers do you want to ' + operator + '?');
+const n = readline.prompt();
 
-console.log('Please enter the second number: ');
-const num2_as_string = readline.prompt();
-const num2 = +num2_as_string;
+console.log('Please enter number 1: ');
+var firstInput = readline.prompt();
+var answer = +firstInput;
 
-var answer;
-switch (operator) {
-    case '+':
-        answer = num1+num2;
-        break;
-    case '-':
-        answer = num1-num2;
-        break;
-    case '*':
-        answer = num1*num2;
-        break;
-    case '/':
-        answer = num1/num2;
-        break;
+for (var i = 2; i <= n; i++) {
+    console.log('Please enter number ' + i + ': ');
+    var nextInput = readline.prompt();
+    var nextNum = +nextInput;
+    switch (operator) {
+        case '+':
+            answer += nextNum;
+            break;
+        case '-':
+            answer -= nextNum;
+            break;
+        case '*':
+            answer *= nextNum;
+            break;
+        case '/':
+            answer /= nextNum;
+            break;
+    }
 }
 
 console.log('The answer is: ' + answer)
