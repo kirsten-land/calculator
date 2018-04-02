@@ -1,12 +1,14 @@
 const readline = require('readline-sync');
 
 console.log('Welcome to the calculator!');
-console.log('==========================')
-const operator = getInputString('Please enter the operator: ');
-const number = getInputNumber('How many numbers do you want to ' + operator + '?');
-const inputNumbers = getNumbers(number);
-const answer = calculateResults(operator, number, inputNumbers);
-console.log('The answer is: ' + answer)
+console.log('==========================');
+while (true) {
+    const operator = getInputString('Please enter the operator: ');
+    const number = getInputNumber('How many numbers do you want to ' + operator + '?');
+    const inputNumbers = getNumbers(number);
+    const answer = calculateResults(operator, number, inputNumbers);
+    console.log('The answer is: ' + answer);
+}
 
 function getInputString(prompt) {
     console.log(prompt);
@@ -14,7 +16,14 @@ function getInputString(prompt) {
 }
 
 function getInputNumber(prompt) {
-    return +getInputString(prompt);
+    let inputString = getInputString(prompt);
+    let inputNum = +inputString;
+    if (isNaN(inputNum)) {
+        console.log("Please, we want a number. Try again.");
+        return getInputNumber(prompt);
+    } else {
+        return inputNum;
+    }
 }
 
 function getNumbers(number) {
