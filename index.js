@@ -4,10 +4,10 @@ console.log('Welcome to the calculator!');
 console.log('==========================');
 while (true) {
     const operator = getInputString('Please enter the operator: ');
-    const number = getInputNumber('How many numbers do you want to ' + operator + '?');
+    const number = getInputNumber(`How many numbers do you want to ${operator}?`);
     const inputNumbers = getNumbers(number);
     const answer = calculateResults(operator, number, inputNumbers);
-    console.log('The answer is: ' + answer);
+    console.log(`The answer is: ${answer}`);
 }
 
 function getInputString(prompt) {
@@ -19,7 +19,7 @@ function getInputNumber(prompt) {
     let inputString = getInputString(prompt);
     let inputNum = +inputString;
     if (isNaN(inputNum)) {
-        console.log("Please, we want a number. Try again.");
+        console.log('Please, we want a number. Try again.');
         return getInputNumber(prompt);
     } else {
         return inputNum;
@@ -29,7 +29,7 @@ function getInputNumber(prompt) {
 function getNumbers(number) {
     let inputArray = Array(number);
     for (let i = 0; i < number; i++) {
-        inputArray[i] = getInputNumber('Please enter number ' + (i+1) + ': ');
+        inputArray[i] = getInputNumber(`Please enter number ${i+1}: `);
     }
     return inputArray;
 }
