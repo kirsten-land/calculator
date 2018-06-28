@@ -13,44 +13,6 @@ while (true) {
   }
 }
 
-function performOneArithmeticCalculation(){
-    const operator = getInputString('Please enter the operator: ');
-    const number = getInputNumber(`How many numbers do you want to ${operator}?`);
-    const inputNumbers = getNumbers(number);
-    const answer = calculateResults(operator, number, inputNumbers);
-    console.log(`The answer is: ${answer}`);
-}
-
-function performOneVowelCountingCalculation(){
-    const inputString = getInputString("Please enter a string:").toUpperCase();
-    const length = inputString.length;
-    const vowels = ['A', 'E', 'I', 'O', 'U'];
-    let frequencies = new Array(5).fill(0);
-    for (let i = 0; i < length; i++) {
-        for (let vowel = 0; vowel < vowels.length; vowel++) {
-            if (inputString[i] == vowels[vowel]) {
-                frequencies[vowel] += 1;
-            }
-        }
-    }
-    console.log("The vowel counts are:");
-    for (let vowel = 0; vowel < vowels.length; vowel++) {
-        console.log(`${vowels[vowel]}: ${frequencies[vowel]}`);
-    }
-}
-
-function getCalculationMode() {
-    return getInputString(
-    `Which calculator mode do you want?
-     1) Arithmetic
-     2) Vowel counting`);
-}
-
-function printWelcomeMessage() {
-    console.log('Welcome to the calculator!');
-    console.log('==========================');
-}
-
 function getInputString(prompt) {
     console.log(prompt);
     return readline.prompt();
@@ -65,6 +27,26 @@ function getInputNumber(prompt) {
     } else {
         return inputNum;
     }
+}
+
+function printWelcomeMessage() {
+    console.log('Welcome to the calculator!');
+    console.log('==========================');
+}
+
+function getCalculationMode() {
+    return getInputString(
+    `Which calculator mode do you want?
+     1) Arithmetic
+     2) Vowel counting`);
+}
+
+function performOneArithmeticCalculation(){
+    const operator = getInputString('Please enter the operator: ');
+    const number = getInputNumber(`How many numbers do you want to ${operator}?`);
+    const inputNumbers = getNumbers(number);
+    const answer = calculateResults(operator, number, inputNumbers);
+    console.log(`The answer is: ${answer}`);
 }
 
 function getNumbers(number) {
@@ -95,4 +77,30 @@ function calculateResults(operator, number, inputNumbers) {
         }
     }
     return answer;
+}
+
+function performOneVowelCountingCalculation(){
+    const inputString = getInputString("Please enter a string:").toUpperCase();
+    vowelCount = countVowels(inputString);
+    printVowelCount(vowelCount);
+}
+
+function countVowels(inputString) {
+    const length = inputString.length;
+    let vowelCount = {A:0, E:0, I:0, O:0, U:0};
+    for (let i = 0; i < length; i++) {
+        for (let vowel in vowelCount) {
+            if (vowel == inputString[i]) {
+                vowelCount[vowel] += 1;
+            }
+        }
+    }
+    return vowelCount;
+}
+
+function printVowelCount(vowelCount) {
+    console.log("The vowel counts are:");
+    for (let vowel in vowelCount) {
+        console.log(`${vowel}: ${vowelCount[vowel]}`);
+    }
 }
