@@ -9,23 +9,15 @@ exports.performOneArithmeticCalculation = function(){
 }
 
 function calculateResults(operator, number, inputNumbers) {
-    let answer = inputNumbers[0];
-    for (let i = 1; i < number; i++) {
-        let nextNum = inputNumbers[i];
-        switch (operator) {
-            case '+':
-                answer += nextNum;
-                break;
-            case '-':
-                answer -= nextNum;
-                break;
-            case '*':
-                answer *= nextNum;
-                break;
-            case '/':
-                answer /= nextNum;
-                break;
-        }
+    let operatorFunction;
+    switch (operator) {
+        case "+": operatorFunction = (a,b) => a+b; break;
+        case "-": operatorFunction = (a,b) => a-b; break;
+        case "*": operatorFunction = (a,b) => a*b; break;
+        case "/": operatorFunction = (a,b) => a/b;
+                  inputNumbers = [inputNumbers[0]].concat(inputNumbers.slice(1).filter(a => a/=0));
+                  break;
     }
+    const answer = inputNumbers.reduce(operatorFunction);
     return answer;
 }
